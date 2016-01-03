@@ -11,8 +11,8 @@ char* letters[] = {
 };
 
 char* numbers[] = {
-  "-----", ".----", "..---", "...--", "....-",
-  ".....", "-....", "--...", "---..", "----."
+  "-----", ".----", "..---", "...--", "....-", // 0-4
+  ".....", "-....", "--...", "---..", "----."  // 5-9
 };
 
 void setup()
@@ -26,7 +26,12 @@ void loop()
   char ch;
   if (Serial.available() > 0) {
     ch = Serial.read();
-    
+    flashChar(ch);
+  }
+}
+
+void flashChar(char ch)
+{
     if (ch >= 'a' && ch <= 'z') {
       flashSequence(letters[ch - 'a']);
     } else if (ch >= 'A' && ch <= 'Z') {
@@ -36,7 +41,6 @@ void loop()
     } else if (ch == ' ') {
       delay(DOT_DELAY);
     }
-  }
 }
 
 void flashSequence(char* sequence)
