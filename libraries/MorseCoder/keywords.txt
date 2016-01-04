@@ -1,0 +1,3 @@
+MorseCoder   KEYWORD1
+flashMessage KEYWORD2
+flashChar    KEYWORD3
