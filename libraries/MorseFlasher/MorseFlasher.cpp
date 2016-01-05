@@ -3,7 +3,7 @@
 #else
   #include "WProgram.h"
 #endif 
-#include "MorseCoder.h"
+#include "MorseFlasher.h"
 
 char* letters[] = {
   ".-", "-...", "-.-.", "-..", ".",  // A-I
@@ -18,7 +18,7 @@ char* numbers[] = {
   ".....", "-....", "--...", "---..", "----."  // 5-9
 };
 
-MorseCoder::MorseCoder(int* led_pins, int dot_delay)
+MorseFlasher::MorseFlasher(int* led_pins, int dot_delay)
 {
     _led_pins = led_pins;
     _dot_delay = dot_delay;
@@ -27,7 +27,7 @@ MorseCoder::MorseCoder(int* led_pins, int dot_delay)
     }
 }
 
-void MorseCoder::flashMessage(char* message) {
+void MorseFlasher::flashMessage(char* message) {
   int i = 0;
   while (message[i] != '\0') {
     flashChar(message[i]);
@@ -35,7 +35,7 @@ void MorseCoder::flashMessage(char* message) {
   }
 }
 
-void MorseCoder::flashChar(char ch)
+void MorseFlasher::flashChar(char ch)
 {
     if (ch >= 'a' && ch <= 'z') {
       flashSequence(letters[ch - 'a']);
@@ -48,7 +48,7 @@ void MorseCoder::flashChar(char ch)
     }
 }
 
-void MorseCoder::flashSequence(char* sequence)
+void MorseFlasher::flashSequence(char* sequence)
 {
   int i = 0;
   while (sequence[i] != '\0') {
@@ -58,7 +58,7 @@ void MorseCoder::flashSequence(char* sequence)
   delay(_dot_delay * 3);
 }
 
-void MorseCoder::flashDotOrDash(char dotOrDash)
+void MorseFlasher::flashDotOrDash(char dotOrDash)
 {
     for (int i = 0; i < sizeof(_led_pins); i++) {
         digitalWrite(_led_pins[i], HIGH);

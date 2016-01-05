@@ -1,4 +1,4 @@
-#include <MorseCoder.h>
+#include <MorseFlasher.h>
 
 #define OUT_PIN_1 3
 #define OUT_PIN_2 5
@@ -16,7 +16,7 @@ char* messages[] = {
   "SODOMY IS SIN"
 };
 
-MorseCoder morseCoder(led_pins, DOT_DELAY);
+MorseFlasher morseFlasher(led_pins, DOT_DELAY);
 
 void setup()
 {
@@ -27,7 +27,7 @@ void loop()
 {
   flash2(3, delayPeriod);
   flash(10, delayPeriod);
-  morseCoder.flashMessage(messages[random(sizeof(messages))]);
+  morseFlasher.flashMessage(messages[random(sizeof(messages))]);
 }
 
 void flash(int numFlashes, int d)

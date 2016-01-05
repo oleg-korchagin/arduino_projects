@@ -4,10 +4,10 @@
   #include "WProgram.h"
 #endif 
 
-class MorseCoder
+class MorseFlasher
 {
     public:
-        MorseCoder(int* led_pins, int dot_delay);
+        MorseFlasher(int* led_pins, int dot_delay);
         void flashMessage(char* message);
         void flashChar(char ch);
     private:

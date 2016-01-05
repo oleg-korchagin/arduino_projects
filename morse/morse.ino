@@ -1,11 +1,11 @@
-#include <MorseCoder.h>
+#include <MorseFlasher.h>
 
 #define DOT_DELAY 200
 #define LED_PIN 3
 
 int led_pins[] = { LED_PIN };
 
-MorseCoder morseCoder(led_pins, DOT_DELAY);
+MorseFlasher morseFlasher(led_pins, DOT_DELAY);
 
 void setup()
 {
@@ -17,7 +17,7 @@ void loop()
   char ch;
   if (Serial.available() > 0) {
     ch = Serial.read();
-    morseCoder.flashChar(ch);
+    morseFlasher.flashChar(ch);
   }
 }
 
