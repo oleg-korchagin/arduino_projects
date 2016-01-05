@@ -10,8 +10,7 @@ int delayPeriod = 1000;
 int led_pins[] = { OUT_PIN_1, OUT_PIN_2 };
 
 char* messages[] = {
-  "HAPPY NEW YEAR",
-  "2016",
+  "HAPPY NEW YEAR 2016",
   "MARRY CHRISTMAS",
   "SODOMY IS SIN"
 };
