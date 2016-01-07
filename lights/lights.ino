@@ -24,40 +24,39 @@ void setup()
 
 void loop()
 {
-  flash2(3, delayPeriod);
-  flash(10, delayPeriod);
+  flash2(led_pins, 3, delayPeriod);
+  flash(led_pins, 10, delayPeriod);
   morseFlasher.flashMessage(messages[random(sizeof(messages))]);
 }
 
-void flash(int numFlashes, int d)
+void flash(int* led_pins, int numFlashes, int d)
 {
   for (int i = 0; i < numFlashes; i++)
   {
-    analogWrite(OUT_PIN_1, LIGHT_ON);
-    delay(d);
-    analogWrite(OUT_PIN_2, LIGHT_ON);
-    delay(d);
-    analogWrite(OUT_PIN_1, LIGHT_OFF);
-    delay(d);
-    analogWrite(OUT_PIN_2, LIGHT_OFF);
+    for (int j = 0; j < sizeof(led_pins); j++) {
+      digitalWrite(led_pins[j], HIGH);
+      delay(d);
+    }
+    for (int j = 0; j < sizeof(led_pins); j++) {
+      delay(d);
+      digitalWrite(led_pins[j], LOW);
+    }
   }
 }
 
-void flash2(int numFlashes, int d)
+void flash2(int* led_pins, int numFlashes, int d)
 {
   for (int k = 0; k < numFlashes; k++)
   {
     for (int i = 0; i <= LIGHT_ON; i += 5)
     {
-      analogWrite(OUT_PIN_1, i);
-      analogWrite(OUT_PIN_2, i);
-      delay(50);
+      for (int j = 0; j < sizeof(led_pins); j++) { analogWrite(led_pins[j], i); }
+      delay(100);
     }
     delay(d);  
     for (int i = LIGHT_ON; i >= 0; i -= 5)
     {
-      analogWrite(OUT_PIN_1, i);
-      analogWrite(OUT_PIN_2, i);
+      for (int j = 0; j < sizeof(led_pins); j++) { analogWrite(led_pins[j], i); }
       delay(100);
     }
     delay(d);
