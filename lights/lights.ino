@@ -27,6 +27,7 @@ void loop()
   flash2(led_pins, 3, delayPeriod);
   flash(led_pins, 10, delayPeriod);
   morseFlasher.flashMessage(messages[random(sizeof(messages))]);
+  flash3(led_pins, 20, 50);
 }
 
 void flash(int* led_pins, int numFlashes, int d)
@@ -60,6 +61,21 @@ void flash2(int* led_pins, int numFlashes, int d)
       delay(100);
     }
     delay(d);
+  }
+}
+
+void flash3(int* led_pins, int numFlashes, int d)
+{
+  for (int k = 0; k < numFlashes; k++)
+  {
+    for (int j = 0; j < sizeof(led_pins); j++) {
+      digitalWrite(led_pins[j], HIGH);
+      delay(d);
+    }
+    for (int j = 0; j < sizeof(led_pins); j++) {
+      digitalWrite(led_pins[j], LOW);
+      delay(d);
+    }
   }
 }
 
